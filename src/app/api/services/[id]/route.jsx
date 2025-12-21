@@ -1,11 +1,18 @@
-import React from 'react';
+import { NextResponse } from "next/server";
+import { getDb } from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
-const route = () => {
-    return (
-        <div>
-            For Routes
-        </div>
-    );
-};
+export async function GET(_req, { params }) {
+  const { id } = params;
+  const db = await getDb();
+  const col = db.collection("services");
 
-export default route;
+  // যদি slug হয়
+  const service = await col.findOne({ slug: id });
+
+  if (!service) {
+    return NextResponse.json({ message: "Not found" }, { status: 404 });
+  }
+
+  return NextResponse.json(service);
+}

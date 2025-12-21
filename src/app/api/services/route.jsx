@@ -1,11 +1,8 @@
-import React from 'react';
+import { NextResponse } from "next/server";
+import { getServicesCollection } from "@/lib/db";
 
-const route = () => {
-    return (
-        <div>
-            For Routes
-        </div>
-    );
-};
-
-export default route;
+export async function GET() {
+  const servicesCol = await getServicesCollection();
+  const services = await servicesCol.find({}).toArray();
+  return NextResponse.json(services);
+}

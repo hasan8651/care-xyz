@@ -1,28 +1,26 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import "./globals.css";
+import Providers from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
-  title: "Care.xyz",
-  description: "Baby Sitting & Elderly Care Service Platform",
+  title: "Care.xyz – Reliable Care Service Platform",
+  description:
+    "Care.xyz এর মাধ্যমে আপনি বেবি কেয়ার, এল্ডারলি কেয়ার এবং অসুস্থ মানুষের জন্য নির্ভরযোগ্য সার্ভিস বুক করতে পারেন।",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="bn">
+      <body className="min-h-screen flex flex-col">
+        <Providers>
+          <Navbar />
+          <main className="flex-1 container mx-auto px-4 py-6">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
