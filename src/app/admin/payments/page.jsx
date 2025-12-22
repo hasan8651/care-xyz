@@ -1,11 +1,11 @@
 
 
-// const page = () => {
-//     return (
-//         <div>
-//             <h2>This is Payment Page</h2>
-//         </div>
-//     );
-// };
+const page = () => {
+    return (
+        <div>
+            <h2>This is Payment Page</h2>
+        </div>
+    );
+};
 
-// export default page;
+export default page;

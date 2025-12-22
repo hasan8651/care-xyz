@@ -12,17 +12,17 @@ export default function Navbar() {
   const [theme, setTheme] = useState("light");
 
   // user role অনুযায়ী dashboard path
-  // const dashboardHref = session
-  //   ? session.user?.role === "admin"
-  //     ? "/admin"
-  //     : "/my-bookings"
-  //   : null;
+  const dashboardHref = session
+    ? session.user?.role === "admin"
+      ? "/admin"
+      : "/my-bookings"
+    : null;
 
   const links = [
     { href: "/", label: "Home" },
     { href: "/services", label: "All Services" },
     { href: "/#about", label: "About Us" },
-    // ...(dashboardHref ? [{ href: dashboardHref, label: "Dashboard" }] : []),
+    ...(dashboardHref ? [{ href: dashboardHref, label: "Dashboard" }] : []),
   ];
 
   // initial theme
@@ -193,11 +193,11 @@ export default function Navbar() {
                 {session.user?.email}
               </li>
               {/* Mobile থেকে Dashboard এক্সেসের জন্য */}
-              {/* {dashboardHref && (
+              {dashboardHref && (
                 <li className="lg:hidden">
                   <Link href={dashboardHref}>Dashboard</Link>
                 </li>
-              )} */}
+              )}
               <li>
                 <button onClick={() => signOut()}>Logout</button>
               </li>
