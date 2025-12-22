@@ -1,7 +1,7 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
-import { getDb } from "@/lib/mongodb";
 import BookingForm from "@/app/components/BookingForm";
+import { authOptions } from "@/lib/auth";
+import { getDb } from "@/lib/mongodb";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 export default async function BookingPage({ params }) {

@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
 import { getDb } from "@/lib/mongodb";
-import { sendBookingInvoice } from "@/lib/email";
+import { stripe } from "@/lib/stripe";
+import { sendBookingInvoice } from "@/utils/email";
+import { NextResponse } from "next/server";
+// import { sendBookingInvoice } from "@/lib/email";
 
 export async function GET(req) {
   try {
