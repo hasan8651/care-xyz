@@ -46,8 +46,6 @@ export default async function ServiceDetailPage(props) {
   }
 
   if (!service) notFound();
-  console.log("SERVICE DETAIL ID:", service._id);
-  console.log("SERVICE DETAIL ID (string):", service._id.toString());
 
   return (
     <div className="space-y-4">
