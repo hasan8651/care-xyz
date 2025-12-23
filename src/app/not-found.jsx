@@ -2,13 +2,11 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="text-center mt-20">
-      <h1 className="text-4xl font-bold mb-4">404 – Page Not Found</h1>
-      <p className="mb-4">
-        আপনি যে পেজটি খুঁজছেন তা পাওয়া যায়নি।
-      </p>
+    <div className="min-h-[60vh] flex flex-col items-center justify-center space-y-4">
+      <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
+      <p>The page you are looking for does not exist.</p>
       <Link href="/" className="btn btn-primary">
-        Go to Home
+        Go Home
       </Link>
     </div>
   );

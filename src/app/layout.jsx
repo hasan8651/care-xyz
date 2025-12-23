@@ -1,24 +1,23 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Providers from "@/components/providers";
 import "./globals.css";
-import Providers from "./providers";
-
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Care.xyz – Reliable Care Service Platform",
+  title: "Care.xyz | Babysitting & Elderly Care",
   description:
-    "Care.xyz এর মাধ্যমে আপনি বেবি কেয়ার, এল্ডারলি কেয়ার এবং অসুস্থ মানুষের জন্য নির্ভরযোগ্য সার্ভিস বুক করতে পারেন।",
+    "Care.xyz – বুক করুন trusted babysitting, elderly care এবং home care services সহজে এবং নিরাপদে।",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="bn">
-      <body className="min-h-screen flex flex-col">
+    <html lang="en" data-theme="light">
+      <body className="min-h-screen max-w-7xl mx-auto flex flex-col bg-base-100">
         <Providers>
           <Navbar />
-          <main className="flex-1 container mx-auto px-4 py-6">
-            {children}
-          </main>
+
+          <main className="flex-1">{children}</main>
+
           <Footer />
         </Providers>
       </body>
