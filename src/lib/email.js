@@ -11,9 +11,6 @@ export async function sendBookingEmail({ to, booking }) {
     },
   });
 
-  await transporter.verify();
-console.log("SMTP connection OK");
-
   const html = `
     <h2>Your Booking is Confirmed</h2>
     <p>Service: <strong>${booking.serviceName}</strong></p>
