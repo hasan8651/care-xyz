@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import AdminSidebar from "@/components/AdminSidebar";
 
 export default async function AdminLayout({ children }) {
   const session = await getServerSession(authOptions);
@@ -8,10 +9,15 @@ export default async function AdminLayout({ children }) {
     redirect("/");
   }
 
-  // sidebar will added here
   return (
-    <div className="container mx-auto px-4 py-6">
-      {children}
+    <div className="min-h-screen flex bg-base-200">
+      {/* Left sidebar */}
+      <AdminSidebar />
+
+      {/* Right content */}
+      <div className="flex-1 p-6 overflow-auto">
+        {children}
+      </div>
     </div>
   );
 }

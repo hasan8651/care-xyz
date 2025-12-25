@@ -2,26 +2,26 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { getDb } from "@/lib/db";
-import AdminBookingRow from "@/components/AdminBookingRow";
+import AdminServiceRow from "@/components/AdminServiceRow";
 
-export default async function AdminPage() {
+export default async function ManageServicesPage() {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== "admin") {
     redirect("/");
   }
 
   const db = await getDb();
-  const rawBookings = await db
-    .collection("bookings")
+  const rawServices = await db
+    .collection("services")
     .find({})
     .sort({ createdAt: -1 })
     .toArray();
 
-  const bookings = rawBookings.map((booking) => ({
-    ...booking,
-    _id: booking._id.toString(),
-    createdAtText: booking.createdAt
-      ? booking.createdAt.toLocaleString("en-GB", {
+  const services = rawServices.map((s) => ({
+    ...s,
+    _id: s._id.toString(),
+    createdAtText: s.createdAt
+      ? s.createdAt.toLocaleString("en-GB", {
           timeZone: "Asia/Dhaka",
         })
       : "",
@@ -29,24 +29,23 @@ export default async function AdminPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Manage Services</h1>
 
-      <h2 className="text-xl font-semibold mb-2">Payment History</h2>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>
             <tr>
               <th>Service</th>
-              <th>User Email</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Payment</th>
-              <th>Date</th>
+              <th>Category</th>
+              <th>Rate</th>
+              <th>Image</th>
+              <th>Created</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking) => (
-              <AdminBookingRow key={booking._id} booking={booking} />
+            {services.map((service) => (
+              <AdminServiceRow key={service._id} service={service} />
             ))}
           </tbody>
         </table>

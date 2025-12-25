@@ -1,24 +1,21 @@
 import Providers from "@/components/providers";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import AppShell from "@/components/AppShell";
+
 
 export const metadata = {
   title: "Care.xyz | Babysitting & Elderly Care",
   description:
-    "Care.xyz – বুক করুন trusted babysitting, elderly care এবং home care services সহজে এবং নিরাপদে।",
+ "Care.xyz - Book trusted babysitting, elderly care and home care services easily and safely.",
+icons: {    icon: "/logo.png",     },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
-      <body className="min-h-screen max-w-7xl mx-auto flex flex-col bg-base-100">
+    <html lang="en" data-theme="dark">
+      <body className="max-w-7xl mx-auto min-h-screen flex flex-col bg-base-100">
         <Providers>
-          <Navbar />
-
-          <main className="flex-1">{children}</main>
-
-          <Footer />
+          <AppShell>{children}</AppShell>
         </Providers>
       </body>
     </html>

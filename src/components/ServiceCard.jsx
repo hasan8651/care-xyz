@@ -17,7 +17,7 @@ export default function ServiceCard({ service }) {
           ৳{service.rate} / {service.rateType}
         </p>
         <div className="card-actions justify-end">
-          <Link href={`/service/${service._id}`} className="btn btn-outline btn-sm">
+          <Link href={`/services/${service._id}`} className="btn btn-outline btn-sm">
             View Details
           </Link>
         </div>

@@ -37,7 +37,6 @@ export default function RegisterForm({ callbackUrl = "/" }) {
 
     toast.success("Registration successful");
 
-    // auto login
     const signInRes = await signIn("credentials", {
       redirect: false,
       email: form.email,

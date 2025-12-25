@@ -71,7 +71,6 @@ export default function AdminBookingRow({ booking }) {
       </td>
 
       <td>{booking.paymentStatus}</td>
-      <td className="truncate max-w-xs">{booking.stripeSessionId}</td>
       <td>{booking.createdAtText}</td>
     </tr>
   );
