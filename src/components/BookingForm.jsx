@@ -17,10 +17,30 @@ export default function BookingForm({ service }) {
 
   const [loading, setLoading] = useState(false);
 
+  const { hourRate, dayRate } = useMemo(() => {
+    if (service.rateType === "hour") {
+      const hr = service.rate;
+      const day = service.rate * 8;
+      return {
+        hourRate: Number(hr.toFixed(2)),
+        dayRate: Number(day.toFixed(2)),
+      };
+    } else {
+          const day = service.rate;
+      const hr = service.rate / 8;
+      return {
+        hourRate: Number(hr.toFixed(2)),
+        dayRate: Number(day.toFixed(2)),
+      };
+    }
+  }, [service.rate, service.rateType]);
+
+   const unitRate = durationUnit === "day" ? dayRate : hourRate;
+
   const totalCost = useMemo(() => {
-    //CALCULATION PORE LOGIC MILATE HOBE
-    return durationValue * service.rate;
-  }, [durationValue, service.rate]);
+    if (!durationValue || !unitRate) return 0;
+    return Number((durationValue * unitRate).toFixed(2));
+  }, [durationValue, unitRate]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -51,9 +71,20 @@ export default function BookingForm({ service }) {
         }),
       });
 
-      const data = await res.json();
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {
+         }
+
       if (!res.ok) {
-        toast.error(data.message || "Could not create payment");
+        toast.error(data?.message || "Could not create payment");
+        setLoading(false);
+        return;
+      }
+
+      if (!data?.url) {
+        toast.error("No payment URL returned");
         setLoading(false);
         return;
       }
@@ -68,7 +99,19 @@ export default function BookingForm({ service }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 card bg-base-100 p-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="flex justify-between items-center text-sm text-base-content/70">
+        <span>
+          Base rate:&nbsp;
+          <span className="font-semibold text-base-content">
+            ৳{unitRate} / {durationUnit}
+          </span>
+        </span>
+        <span className="text-xs opacity-70">
+          (1 day = 8 hours)
+        </span>
+      </div>
+
+         <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="label">Duration</label>
           <input
@@ -93,6 +136,7 @@ export default function BookingForm({ service }) {
         </div>
       </div>
 
+      {/* Location zapshift */}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="label">Division</label>
@@ -121,7 +165,9 @@ export default function BookingForm({ service }) {
           <input
             className="input input-bordered w-full"
             value={location.city}
-            onChange={(e) => setLocation({ ...location, city: e.target.value })}
+            onChange={(e) =>
+              setLocation({ ...location, city: e.target.value })
+            }
             required
           />
         </div>
@@ -130,10 +176,13 @@ export default function BookingForm({ service }) {
           <input
             className="input input-bordered w-full"
             value={location.area}
-            onChange={(e) => setLocation({ ...location, area: e.target.value })}
+            onChange={(e) =>
+              setLocation({ ...location, area: e.target.value })
+            }
           />
         </div>
       </div>
+
       <div>
         <label className="label">Address</label>
         <textarea

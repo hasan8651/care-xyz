@@ -163,7 +163,7 @@ export default function ContactPage() {
                     <span className="label-text">Message</span>
                   </label>
                   <textarea
-                    className="textarea textarea-bordered w-full min-h-[120px]"
+                    className="textarea textarea-bordered w-full min-h-30"
                     placeholder="Please share details about your question or issue..."
                     required
                   />

@@ -37,7 +37,7 @@ export default function HeroSection() {
         hero-content 
         flex-col lg:flex-row items-stretch gap-8
         rounded-2xl
-        bg-gradient-to-br from-primary/10 via-base-100 to-accent/10
+       bg-linear-to-br from-primary/10 via-base-100 to-accent/10
         shadow-lg
         px-6 py-8 lg:px-10 lg:py-12
       "

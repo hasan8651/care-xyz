@@ -9,6 +9,8 @@ export const metadata = {
     "Find and book trusted babysitting, elderly care, and in‑home care services — safe, simple, and affordable.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const db = await getDb();
   const rawServices = await db.collection("services").find({}).toArray();

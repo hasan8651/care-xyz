@@ -64,7 +64,7 @@ export default async function ServiceDetailPage(props) {
       <div className="card bg-base-100 shadow-xl overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Left: image */}
-          <div className="relative h-64 md:h-full min-h-[260px]">
+          <div className="relative h-64 md:h-full min-h-65">
             {service.image ? (
               <Image
                 src={service.image}
@@ -75,7 +75,7 @@ export default async function ServiceDetailPage(props) {
                 unoptimized
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-primary/20 via-base-200 to-accent/20 flex items-center justify-center">
+              <div className="w-full h-full bg-linear-to-br from-primary/20 via-base-200 to-accent/20 flex items-center justify-center">
                 <span className="text-base-content/60 text-sm">
                   No image available
                 </span>

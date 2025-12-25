@@ -6,6 +6,8 @@ export const metadata = {
   description: "Browse all babysitting, elderly care and home care services.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AllServicesPage() {
   const db = await getDb();
   const rawServices = await db.collection("services").find({}).toArray();
